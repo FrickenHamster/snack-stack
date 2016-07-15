@@ -3,6 +3,8 @@
  */
 
 import  React from 'react';
+import Modal from 'react-bootstrap/lib/Modal';
+import Button from 'react-bootstrap/lib/Button';
 
 export class SnackListItem extends React.Component {
 	constructor(props)
@@ -26,8 +28,10 @@ export class SnackList extends React.Component {
 	{
 		super(props);
 		this.state = {
-			snacks: []
-		}
+			snacks: [],
+		};
+		
+		this.openModal = this.openModal.bind(this);
 	}
 
 	componentDidMount()
@@ -43,10 +47,10 @@ export class SnackList extends React.Component {
 		// todo: comparing shallow objects -- better way?
 		// todo: when do we get called even when there's no change?
 		/*if (oldQuery.priority === newQuery.priority &&
-			oldQuery.status === newQuery.status) {
-			console.log('BugList: componentDidUpdate, no change in filter, not updating');
-			return;
-		}*/
+		 oldQuery.status === newQuery.status) {
+		 console.log('BugList: componentDidUpdate, no change in filter, not updating');
+		 return;
+		 }*/
 		console.log('SnackList: componentDidUpdate, loading data with new filter');
 		//this.loadData();
 	}
@@ -63,7 +67,6 @@ export class SnackList extends React.Component {
 			console.log(err);
 		});
 	}
-
 
 	render()
 	{
@@ -83,6 +86,7 @@ export class SnackList extends React.Component {
 				<ul>
 					{snackItems}
 				</ul>
+
 			</div>
 		)
 	}

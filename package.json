@@ -17,6 +17,7 @@
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^1.6.0",
     "react": "^15.2.1",
+    "react-bootstrap": "^0.29.5",
     "react-dom": "^15.2.1",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"
