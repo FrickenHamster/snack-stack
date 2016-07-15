@@ -10,7 +10,7 @@ export class SnackListItem extends React.Component {
 		super(props);
 	}
 
-	render ()
+	render()
 	{
 		return (
 			<li>
@@ -26,19 +26,44 @@ export class SnackList extends React.Component {
 	{
 		super(props);
 		this.state = {
-			snacks: [
-				{
-					id: 0,
-					name: "Blueberries"
-				
-				},
-				{
-					id: 1,
-					name: "Honest Kids Juice Boxes"
-				}
-			]
+			snacks: []
 		}
 	}
+
+	componentDidMount()
+	{
+		console.log("snack list did mount")
+		this.loadData();
+	}
+
+	componentDidUpdate(prevProps)
+	{
+		//const oldQuery = prevProps.location.query;
+		//const newQuery = this.props.location.query;
+		// todo: comparing shallow objects -- better way?
+		// todo: when do we get called even when there's no change?
+		/*if (oldQuery.priority === newQuery.priority &&
+			oldQuery.status === newQuery.status) {
+			console.log('BugList: componentDidUpdate, no change in filter, not updating');
+			return;
+		}*/
+		console.log('SnackList: componentDidUpdate, loading data with new filter');
+		//this.loadData();
+	}
+
+	loadData()
+	{
+		fetch(`/api/snacks/`).then(response =>
+			response.json()
+		).then(snacks =>
+		{
+			this.setState({snacks: snacks});
+		}).catch(err =>
+		{
+			console.log(err);
+		});
+	}
+
 
 	render()
 	{
