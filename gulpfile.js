@@ -37,7 +37,7 @@ gulp.task('watch', function ()
 				console.error(err.codeFrame);
 			})
 			.pipe(source('bundle.js'))
-			.pipe(gulp.dest('public/'));
+			.pipe(gulp.dest('public/js/'));
 		console.log("Bundle updated, success");
 	}
 

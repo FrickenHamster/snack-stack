@@ -14,27 +14,15 @@ export default class SnackCreateModal extends React.Component {
 		super(props);
 		this.state = {showModal: this.props.showModal};
 
-		this.open = this.open.bind(this);
-		this.close = this.close.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	open()
-	{
-		this.setState({showModal: true});
-	}
-
-	close()
-	{
-		this.setState({showModal: false});
 	}
 
 	handleSubmit()
 	{
 		const form = document.forms.snackAdd;
-		console.log(form);
 		this.props.submitSnack({name: form.name.value});
 		this.state.name = "";
+		this.props.closeMethod();
 	}
 
 	componentWillReceiveProps(nextProps)
@@ -48,7 +36,7 @@ export default class SnackCreateModal extends React.Component {
 	render()
 	{
 		return (
-			<Modal show={this.state.showModal} onHide={this.close}>
+			<Modal show={this.state.showModal} onHide={this.props.closeMethod}>
 				<Modal.Header>
 					<Modal.Title>Create Snack</Modal.Title>
 				</Modal.Header>
@@ -71,7 +59,7 @@ export default class SnackCreateModal extends React.Component {
 						onClick={this.handleSubmit}
 					>Stack dat Snack!</Button>
 
-					<Button onClick={this.close}>Close</Button>
+					<Button onClick={this.props.closeMethod}>Close</Button>
 				</Modal.Footer>
 			</Modal>
 		)
