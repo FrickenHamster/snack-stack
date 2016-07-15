@@ -2,9 +2,7 @@
  * Created by alexanderyan on 7/14/16.
  */
 
-import  React from 'react';
-import Modal from 'react-bootstrap/lib/Modal';
-import Button from 'react-bootstrap/lib/Button';
+import React from 'react';
 
 export class SnackListItem extends React.Component {
 	constructor(props)
@@ -28,44 +26,17 @@ export class SnackList extends React.Component {
 	{
 		super(props);
 		this.state = {
-			snacks: [],
+			snacks: this.props.snacks,
 		};
-		
-		this.openModal = this.openModal.bind(this);
 	}
 
-	componentDidMount()
+	componentWillReceiveProps(nextProps)
 	{
-		console.log("snack list did mount")
-		this.loadData();
-	}
-
-	componentDidUpdate(prevProps)
-	{
-		//const oldQuery = prevProps.location.query;
-		//const newQuery = this.props.location.query;
-		// todo: comparing shallow objects -- better way?
-		// todo: when do we get called even when there's no change?
-		/*if (oldQuery.priority === newQuery.priority &&
-		 oldQuery.status === newQuery.status) {
-		 console.log('BugList: componentDidUpdate, no change in filter, not updating');
-		 return;
-		 }*/
-		console.log('SnackList: componentDidUpdate, loading data with new filter');
-		//this.loadData();
-	}
-
-	loadData()
-	{
-		fetch(`/api/snacks/`).then(response =>
-			response.json()
-		).then(snacks =>
+		if (nextProps.snacks !== this.state.snacks)
 		{
-			this.setState({snacks: snacks});
-		}).catch(err =>
-		{
-			console.log(err);
-		});
+			console.log('new snacks');
+			this.setState({snacks: nextProps.snacks});
+		}
 	}
 
 	render()

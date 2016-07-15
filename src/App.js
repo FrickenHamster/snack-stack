@@ -3,9 +3,9 @@
  */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import SnackIndex from './SnackIndex';
 
 
-
-ReactDOM.render(<SnackList/>, document.getElementById("snacks"));
+ReactDOM.render(<SnackIndex/>, document.getElementById("snacks"));
 
 	
